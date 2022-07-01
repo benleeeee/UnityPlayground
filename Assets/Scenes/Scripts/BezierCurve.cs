@@ -17,12 +17,14 @@ public class BezierCurve : MonoBehaviour
     //Interpolated point that moves along the curve/line
     public Transform point3;
 
+    //Points for visualising interpolated points
+    public Transform[] VisualisationPoints;
+
     //Draw path of bezier curve?
     public bool drawBezierCurve;
 
-    
-
-    public Transform[] VisualisationPoints;
+    //Leave a trail behind along curve path?
+    public bool drawTrail;    
 
     [Range(0f, 1f)]
     public float _t; 
@@ -76,6 +78,12 @@ public class BezierCurve : MonoBehaviour
             VisualisationPoints[5] = transform.Find("VisualisationPoints").Find("layer3p1");        
     }
 
+
+
+    private Vector3 prevFramePos;
+
+
+
     [ExecuteAlways]
     void OnDrawGizmos()
     {
@@ -85,6 +93,7 @@ public class BezierCurve : MonoBehaviour
         Vector3 p2 = point2.position;
         Vector3 c1 = control1.position;
         Vector3 c2 = control2.position;
+        prevFramePos = point3.position;
 
         //Draw points
         Gizmos.color = Color.red;
@@ -141,7 +150,16 @@ public class BezierCurve : MonoBehaviour
             VisualisationPoints[4].position = layer2p2;
             Gizmos.DrawLine(layer2p1, layer2p2);            
         }
-        
+        if (drawTrail)
+        {
+            if (prevFramePos != layer3p1)
+            {
+                //Draw line along tangent of curve at point
+                float trailLength = (layer2p1 - layer2p2).sqrMagnitude * Time.deltaTime;
+                Vector3 tangent = (layer2p1 - layer2p2).normalized * trailLength;
+                Debug.DrawLine(layer3p1, layer3p1 + tangent, Color.green, 2.0f);
+            }
+        }
 
         return layer3p1;        
     }
