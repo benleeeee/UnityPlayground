@@ -15,10 +15,15 @@ public class DiceRollingScript : MonoBehaviour
         none
     }
     public Transform _Pivot;
-    public E_direction _MovingDir;
+    private E_direction _MovingDir = E_direction.none;
     public float _RollSpeed;
     private float _DegreesRotated = 0;
     private bool _PivotSet = false;
+    private void Start()
+    {
+        if (_Pivot == null)
+            _Pivot = transform.Find("Pivot");
+    }
     private void Update()
     {
         CheckForInput();
@@ -72,7 +77,7 @@ public class DiceRollingScript : MonoBehaviour
             if (_PivotSet)            
                 Roll();            
             else
-                Debug.LogError("Pivot not set but move direction is set");
+                Debug.LogError("Pivot not set but move direction is set to " + _MovingDir);
         }
     }
     private void Roll()
@@ -107,6 +112,13 @@ public class DiceRollingScript : MonoBehaviour
 
             //Reset for next movement input
             ResetForNewMovement();
+            Debug.Log("up face = " + GetComponent<FaceChecker>().GetPosYFace());
+            Debug.Log("down face = " + GetComponent<FaceChecker>().GetNegYFace());
+            Debug.Log("right face = " + GetComponent<FaceChecker>().GetPosXFace());
+            Debug.Log("left face = " + GetComponent<FaceChecker>().GetNegXFace());
+            Debug.Log("forward face = " + GetComponent<FaceChecker>().GetPosZFace());
+            Debug.Log("backward face = " + GetComponent<FaceChecker>().GetNegZFace());
+            
         }
     }
     private int FixToNearestAngle(float angle)
