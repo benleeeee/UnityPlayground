@@ -52,13 +52,13 @@ public class BezierCurve : MonoBehaviour
         }
         if (control1 == null)
         {
-            if (transform.Find("c1"))
-                control1 = transform.Find("c1");
+            if (transform.Find("controlPoints/c1"))
+                control1 = transform.Find("controlPoints/c1");
         }
         if (control2 == null)
         {
-            if (transform.Find("c2"))
-                control2 = transform.Find("c2");
+            if (transform.Find("controlPoints/c2"))
+                control2 = transform.Find("controlPoints/c2");
         }
 
         //Fill array of transform references
