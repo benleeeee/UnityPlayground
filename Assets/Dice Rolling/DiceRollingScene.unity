@@ -167,7 +167,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &217019203
 Rigidbody:
@@ -750,6 +750,8 @@ MonoBehaviour:
   _WhiteTile: {fileID: 3603193822442039484, guid: 9c3755945a3555640893a68649dcb65f, type: 3}
   _SensorParent: {fileID: 1817208422}
   _FloorParent: {fileID: 1559851908}
+  _PlayerDice: {fileID: 729435837}
+  _PlayerCoord: {x: 0, y: 0}
 --- !u!4 &1378972437
 Transform:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class TileSpawnSensor : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("TileSpawnSensor"))
         {
-            _FM.SpawnTile(transform.position, _BlackOrWhite);
+            _FM.SpawnTile(new Vector2(transform.position.x, transform.position.z), _BlackOrWhite);
             GameObject.Destroy(this.gameObject);
         }
     }
