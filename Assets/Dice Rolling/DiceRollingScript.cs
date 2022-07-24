@@ -32,22 +32,22 @@ public class DiceRollingScript : MonoBehaviour
     {        
         if (_MovingDir == E_direction.none)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKey(KeyCode.W))
             {
                 _MovingDir = E_direction.up;
                 SetPivot(_Pivot.parent.position + new Vector3(0, -0.38f, 0.38f));
             }
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKey(KeyCode.A))
             {
                 _MovingDir = E_direction.left;
                 SetPivot(_Pivot.parent.position + new Vector3(-0.38f, -0.38f, 0));
             }
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKey(KeyCode.S))
             {
                 _MovingDir = E_direction.down;
                 SetPivot(_Pivot.parent.position + new Vector3(0, -0.38f, -0.38f));
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
             {
                 _MovingDir = E_direction.right;
                 SetPivot(_Pivot.parent.position + new Vector3(0.38f, -0.38f, 0));
@@ -112,13 +112,12 @@ public class DiceRollingScript : MonoBehaviour
 
             //Reset for next movement input
             ResetForNewMovement();
-            Debug.Log("up face = " + GetComponent<FaceChecker>().GetPosYFace());
-            Debug.Log("down face = " + GetComponent<FaceChecker>().GetNegYFace());
-            Debug.Log("right face = " + GetComponent<FaceChecker>().GetPosXFace());
-            Debug.Log("left face = " + GetComponent<FaceChecker>().GetNegXFace());
-            Debug.Log("forward face = " + GetComponent<FaceChecker>().GetPosZFace());
-            Debug.Log("backward face = " + GetComponent<FaceChecker>().GetNegZFace());
-            
+            //Debug.Log("up face = " + GetComponent<FaceChecker>().GetPosYFace());
+            //Debug.Log("down face = " + GetComponent<FaceChecker>().GetNegYFace());
+            //Debug.Log("right face = " + GetComponent<FaceChecker>().GetPosXFace());
+            //Debug.Log("left face = " + GetComponent<FaceChecker>().GetNegXFace());
+            //Debug.Log("forward face = " + GetComponent<FaceChecker>().GetPosZFace());
+            //Debug.Log("backward face = " + GetComponent<FaceChecker>().GetNegZFace());
         }
     }
     private int FixToNearestAngle(float angle)
