@@ -5,6 +5,7 @@ using UnityEngine;
 public class TileSpawnSensor : MonoBehaviour
 {
     private FloorManagerScript _FM;
+    [SerializeField]
     private bool _BlackOrWhite; //false = black, true = white
     public void SetFloorManager(FloorManagerScript fm) { _FM = fm; }
     public void SetColour(bool blackOrWhite) { _BlackOrWhite = blackOrWhite; }

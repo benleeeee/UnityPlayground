@@ -53,21 +53,22 @@ public class FloorManagerScript : MonoBehaviour
                 if ( new Vector2(x,z).sqrMagnitude <= maxDist * maxDist )
                 {
                     Transform tSensor, tTile;
-                    _CoordToSensorMap.TryGetValue(_PlayerCoord + new Vector2(x, z), out tSensor);
-                    _CoordToTileMap.TryGetValue(_PlayerCoord + new Vector2(x, z), out tTile);
+                    Vector2 potentialCoord = _PlayerCoord + new Vector2(x, z);
+                    _CoordToSensorMap.TryGetValue(potentialCoord, out tSensor);
+                    _CoordToTileMap.TryGetValue(potentialCoord, out tTile);
                     
                     if (tSensor == null && tTile == null)
                     {
                         //Couldn't find sensor or tile so spawn a sensor                        
-                        if ((Mathf.Abs(x) + Mathf.Abs(z)) % 2 == 0)
+                        if ((Mathf.Abs(potentialCoord.x) + Mathf.Abs(potentialCoord.y)) % 2 == 0)
                         {
-                            SpawnSensor(_PlayerCoord + new Vector2(x, z), false);
-                            Debug.Log(Mathf.Abs(x) + " + " + Mathf.Abs(z) + " % 2 == " + ((Mathf.Abs(x) + Mathf.Abs(z)) % 2) + " creating black");
+                            SpawnSensor(potentialCoord, false);
+                            Debug.Log(Mathf.Abs(potentialCoord.x) + " + " + Mathf.Abs(potentialCoord.y) + " % 2 == " + ((Mathf.Abs(potentialCoord.x) + Mathf.Abs(potentialCoord.y)) % 2) + " creating black");
                         }
                         else
                         {
-                            SpawnSensor(_PlayerCoord + new Vector2(x, z), true);
-                            Debug.Log(Mathf.Abs(x) + " + " + Mathf.Abs(z) + " % 2 == " + ((Mathf.Abs(x) + Mathf.Abs(z)) % 2) + " creating white");
+                            SpawnSensor(potentialCoord, true);
+                            Debug.Log(Mathf.Abs(potentialCoord.x) + " + " + Mathf.Abs(potentialCoord.y) + " % 2 == " + ((Mathf.Abs(potentialCoord.x) + Mathf.Abs(potentialCoord.y)) % 2) + " creating white");
                         }
                     }
                 }
